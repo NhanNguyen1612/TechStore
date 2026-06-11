@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:techstore-test;MODE=MySQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+app:
+  jwt:
+    secret: VGhpcy1pcy1hLXRlc3Qta2V5LXdpdGgtYXQtbGVhc3QtMzItYnl0ZXMh
+    issuer: techstore-test
+    access-token-expiration: 15m
+    refresh-token-expiration: 7d
+  cors:
+    allowed-origins: http://localhost:5173
+  cloudinary:
+    cloud-name: test-cloud
+    api-key: test-key
+    api-secret: test-secret
+    avatar-folder: techstore-test/avatars
+    max-avatar-size: 5MB
+  product-images:
+    folder: techstore-test/products
+    max-file-size: 5MB
+    max-files: 10
+  review-images:
+    folder: techstore-test/reviews
+    max-file-size: 5MB
+    max-files: 5
+  chat-images:
+    folder: techstore-test/chat
+    max-file-size: 5MB
+  momo:
+    create-endpoint: https://test-payment.momo.vn/v2/gateway/api/create
+    partner-code: TEST_PARTNER
+    access-key: TEST_ACCESS_KEY
+    secret-key: TEST_SECRET_KEY
+    redirect-url: http://localhost/api/payments/momo/return
+    ipn-url: http://localhost/api/payments/momo/ipn
+    request-type: captureWallet
+    language: vi
+    connect-timeout: 1s
+    read-timeout: 1s
+    qr-expiration: 10s

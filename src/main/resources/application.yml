@@ -1,0 +1,59 @@
+spring:
+  application:
+    name: techstore
+  config:
+    import: optional:file:.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/techstore?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:update}
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 50MB
+
+app:
+  jwt:
+    secret: ${JWT_SECRET}
+    issuer: ${JWT_ISSUER:techstore-api}
+    access-token-expiration: ${JWT_ACCESS_EXPIRATION:15m}
+    refresh-token-expiration: ${JWT_REFRESH_EXPIRATION:7d}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  cloudinary:
+    cloud-name: ${CLOUDINARY_CLOUD_NAME}
+    api-key: ${CLOUDINARY_API_KEY}
+    api-secret: ${CLOUDINARY_API_SECRET}
+    avatar-folder: ${CLOUDINARY_AVATAR_FOLDER:techstore/avatars}
+    max-avatar-size: ${MAX_AVATAR_SIZE:5MB}
+  product-images:
+    folder: ${CLOUDINARY_PRODUCT_FOLDER:techstore/products}
+    max-file-size: ${MAX_PRODUCT_IMAGE_SIZE:5MB}
+    max-files: ${MAX_PRODUCT_IMAGES:10}
+  review-images:
+    folder: ${CLOUDINARY_REVIEW_FOLDER:techstore/reviews}
+    max-file-size: ${MAX_REVIEW_IMAGE_SIZE:5MB}
+    max-files: ${MAX_REVIEW_IMAGES:5}
+  chat-images:
+    folder: ${CLOUDINARY_CHAT_FOLDER:techstore/chat}
+    max-file-size: ${MAX_CHAT_IMAGE_SIZE:5MB}
+  momo:
+    create-endpoint: ${MOMO_CREATE_ENDPOINT:https://test-payment.momo.vn/v2/gateway/api/create}
+    partner-code: ${MOMO_PARTNER_CODE}
+    access-key: ${MOMO_ACCESS_KEY}
+    secret-key: ${MOMO_SECRET_KEY}
+    redirect-url: ${MOMO_REDIRECT_URL}
+    ipn-url: ${MOMO_IPN_URL}
+    request-type: ${MOMO_REQUEST_TYPE:captureWallet}
+    language: ${MOMO_LANGUAGE:vi}
+    connect-timeout: ${MOMO_CONNECT_TIMEOUT:10s}
+    read-timeout: ${MOMO_READ_TIMEOUT:35s}
+    qr-expiration: ${MOMO_QR_EXPIRATION:10s}
